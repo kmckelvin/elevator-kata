@@ -20,6 +20,24 @@ module Elevator
         end
       end
 
+      context "with a stop instruction" do
+        it "stops at the current floor and removes the instruction from the queue" do
+          ground_floor = Floor.new("G")
+          floors = [ground_floor]
+
+          elevator = Elevator.new(current_floor: ground_floor, motion: :up)
+
+          initial_shaft_state = ShaftState.new(floors, elevator, [Instructions::Stop.new])
+
+          run_loop = RunLoop.new
+
+          next_shaft_state = run_loop.tick(initial_shaft_state)
+
+          stopped_elevator = Elevator.new(current_floor: ground_floor, motion: :stopped)
+          expect(next_shaft_state).to eq ShaftState.new(floors, stopped_elevator, [])
+        end
+      end
+
       context "with a request to go to the first floor" do
         it "goes to the first floor after ticking" do
           ground_floor = Floor.new("G")
