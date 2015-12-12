@@ -3,6 +3,7 @@ module Elevator
   end
 end
 
+require_relative 'elevator/actions/move_up'
 require_relative 'elevator/actions/stop_action'
 
 require_relative 'elevator/instructions/pickup_request'
