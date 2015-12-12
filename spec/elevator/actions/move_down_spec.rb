@@ -16,6 +16,7 @@ module Elevator
             MoveDown.new.apply(shaft_state)
 
             expect(shaft_state.elevator.current_floor).to eq ground_floor
+            expect(shaft_state.elevator.motion).to eq :down
           end
         end
       end
