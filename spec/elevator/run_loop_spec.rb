@@ -34,11 +34,11 @@ module Elevator
 
           run_loop = RunLoop.new
 
-          next_shaft_state = run_loop.tick(initial_shaft_state)
+          moving_shaft_state = run_loop.tick(initial_shaft_state)
+          final_shaft_state = run_loop.tick(moving_shaft_state)
 
-          expected_next_elevator = Elevator.new(current_floor: first_floor)
-
-          expect(next_shaft_state).to eq ShaftState.new(floors, expected_next_elevator, [])
+          expected_final_elevator = Elevator.new(current_floor: first_floor)
+          expect(final_shaft_state).to eq ShaftState.new(floors, expected_final_elevator, [])
         end
       end
     end
