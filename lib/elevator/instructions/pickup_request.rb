@@ -12,6 +12,10 @@ module Elevator
           Actions::MoveDown.new
         end
       end
+
+      def is_fulfilled?(shaft_state)
+        shaft_state.elevator.current_floor == floor
+      end
     end
   end
 end
