@@ -58,14 +58,28 @@ module Elevator
         end
 
         context "when the elevator is on the target level" do
-          it "returns true" do
-            first_floor = Floor.new("1")
+          context "and the elevator is stopped" do
+            it "returns true" do
+              first_floor = Floor.new("1")
 
-            elevator = Elevator.new(current_floor: first_floor)
+              elevator = Elevator.new(current_floor: first_floor)
 
-            shaft_state = ShaftState.new([first_floor], elevator, [])
+              shaft_state = ShaftState.new([first_floor], elevator, [])
 
-            expect(PickupRequest.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_truthy
+              expect(PickupRequest.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_truthy
+            end
+          end
+
+          context "and the elevator is not stopped" do
+            it "returns false" do
+              first_floor = Floor.new("1")
+
+              elevator = Elevator.new(current_floor: first_floor, motion: :up)
+
+              shaft_state = ShaftState.new([first_floor], elevator, [])
+
+              expect(PickupRequest.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_falsy
+            end
           end
         end
 

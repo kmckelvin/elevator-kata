@@ -14,7 +14,7 @@ module Elevator
       end
 
       def is_fulfilled?(shaft_state)
-        shaft_state.elevator.current_floor == floor
+        shaft_state.elevator.current_floor == floor && shaft_state.elevator.stopped?
       end
     end
   end
