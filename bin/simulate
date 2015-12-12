@@ -29,7 +29,7 @@ end
 elevator = Elevator::Elevator.new(current_floor: lookup_floor("G", floors))
 
 shaft_state = Elevator::ShaftState.new(floors, elevator, [])
-shaft_state.instructions << Elevator::Instructions::PickupRequest.new(lookup_floor("5", floors), :down)
+shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("5", floors), :down)
 tick_count = 0
 
 render_building(shaft_state, tick_count)
@@ -54,14 +54,14 @@ end
 draw_until_paused(state, run_loop)
 
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("B1", floors))
-shaft_state.instructions << Elevator::Instructions::PickupRequest.new(lookup_floor("B1", floors), :up)
+shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("B1", floors), :up)
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("4", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("6", floors))
 
 draw_until_paused(state, run_loop)
 
-shaft_state.instructions << Elevator::Instructions::PickupRequest.new(lookup_floor("9", floors), :down)
-shaft_state.instructions << Elevator::Instructions::PickupRequest.new(lookup_floor("8", floors), :down)
+shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("9", floors), :down)
+shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("8", floors), :down)
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("4", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("6", floors))
 

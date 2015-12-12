@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Elevator
   module Instructions
-    RSpec.describe PickupRequest do
+    RSpec.describe Pickup do
       describe "#next_step" do
         context "with a moving elevator on the same level" do
           it "returns a stop action" do
@@ -10,7 +10,7 @@ module Elevator
             elevator = Elevator.new(current_floor: floor)
             shaft_state = ShaftState.new([floor], elevator, [])
 
-            instruction = PickupRequest.new(floor, :up)
+            instruction = Pickup.new(floor, :up)
             action = instruction.next_step(shaft_state)
             expect(action).to be_a Actions::StopAction
           end
@@ -23,7 +23,7 @@ module Elevator
             elevator = Elevator.new(current_floor: ground_floor)
             shaft_state = ShaftState.new([ground_floor, first_floor], elevator, [])
 
-            instruction = PickupRequest.new(first_floor, :down)
+            instruction = Pickup.new(first_floor, :down)
             action = instruction.next_step(shaft_state)
             expect(action).to be_a Actions::MoveUp
           end
@@ -36,7 +36,7 @@ module Elevator
             elevator = Elevator.new(current_floor: first_floor)
             shaft_state = ShaftState.new([ground_floor, first_floor], elevator, [])
 
-            instruction = PickupRequest.new(ground_floor, :up)
+            instruction = Pickup.new(ground_floor, :up)
             action = instruction.next_step(shaft_state)
             expect(action).to be_a Actions::MoveDown
           end
@@ -53,7 +53,7 @@ module Elevator
 
             shaft_state = ShaftState.new([ground_floor, first_floor], elevator, [])
 
-            expect(PickupRequest.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_falsy
+            expect(Pickup.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_falsy
           end
         end
 
@@ -66,7 +66,7 @@ module Elevator
 
               shaft_state = ShaftState.new([first_floor], elevator, [])
 
-              expect(PickupRequest.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_truthy
+              expect(Pickup.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_truthy
             end
           end
 
@@ -78,7 +78,7 @@ module Elevator
 
               shaft_state = ShaftState.new([first_floor], elevator, [])
 
-              expect(PickupRequest.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_falsy
+              expect(Pickup.new(first_floor, :down).is_fulfilled?(shaft_state)).to be_falsy
             end
           end
         end
@@ -92,7 +92,7 @@ module Elevator
 
             shaft_state = ShaftState.new([ground_floor, first_floor], elevator, [])
 
-            expect(PickupRequest.new(ground_floor, :down).is_fulfilled?(shaft_state)).to be_falsy
+            expect(Pickup.new(ground_floor, :down).is_fulfilled?(shaft_state)).to be_falsy
           end
         end
       end

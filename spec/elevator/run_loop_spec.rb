@@ -46,7 +46,7 @@ module Elevator
 
           elevator = Elevator.new(current_floor: ground_floor)
 
-          instruction = Instructions::PickupRequest.new(first_floor, :down)
+          instruction = Instructions::Pickup.new(first_floor, :down)
 
           initial_shaft_state = ShaftState.new(floors, elevator, [instruction])
 
@@ -68,7 +68,7 @@ module Elevator
 
           elevator = Elevator.new(current_floor: first_floor)
 
-          instruction = Instructions::PickupRequest.new(ground_floor, :down)
+          instruction = Instructions::Pickup.new(ground_floor, :down)
 
           initial_shaft_state = ShaftState.new(floors, elevator, [instruction])
 
@@ -90,7 +90,7 @@ module Elevator
 
           elevator = Elevator.new(current_floor: ground_floor)
 
-          instruction = Instructions::PickupRequest.new(first_floor, :down)
+          instruction = Instructions::Pickup.new(first_floor, :down)
           initial_shaft_state = ShaftState.new(floors, elevator, [instruction])
 
           run_loop = RunLoop.new

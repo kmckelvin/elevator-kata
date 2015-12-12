@@ -5,7 +5,7 @@ module Elevator
     describe "#next_instruction" do
       context "with pending instructions" do
         it "returns the first instruction" do
-          instruction = Instructions::PickupRequest.new(nil)
+          instruction = Instructions::Pickup.new(nil)
           state = ShaftState.new(nil, nil, [instruction])
           resolver = InstructionResolver.new
           expect(resolver.next_instruction(state)).to eq instruction
