@@ -3,6 +3,7 @@ module Elevator
   end
 end
 
+require_relative 'elevator/actions/abstract_move'
 require_relative 'elevator/actions/move_down'
 require_relative 'elevator/actions/move_up'
 require_relative 'elevator/actions/stop_action'
