@@ -23,9 +23,22 @@ module Elevator
             elevator = Elevator.new(current_floor: ground_floor)
             shaft_state = ShaftState.new([ground_floor, first_floor], elevator, [])
 
-            instruction = PickupRequest.new(first_floor, :up)
+            instruction = PickupRequest.new(first_floor, :down)
             action = instruction.next_step(shaft_state)
             expect(action).to be_a Actions::MoveUp
+          end
+        end
+
+        context "with a moving elevator on a level above the target level" do
+          it "returns a MoveDown action" do
+            ground_floor = Floor.new("G")
+            first_floor = Floor.new("1")
+            elevator = Elevator.new(current_floor: first_floor)
+            shaft_state = ShaftState.new([ground_floor, first_floor], elevator, [])
+
+            instruction = PickupRequest.new(ground_floor, :up)
+            action = instruction.next_step(shaft_state)
+            expect(action).to be_a Actions::MoveDown
           end
         end
       end

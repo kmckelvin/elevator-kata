@@ -8,6 +8,8 @@ module Elevator
           Actions::StopAction.new
         elsif shaft_state.floors.index(current_floor) < shaft_state.floors.index(floor)
           Actions::MoveUp.new
+        else
+          Actions::MoveDown.new
         end
       end
     end
