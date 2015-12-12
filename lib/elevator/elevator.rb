@@ -4,5 +4,9 @@ module Elevator
       self.current_floor = current_floor
       self.motion = motion
     end
+
+    def stopped?
+      motion == :stopped
+    end
   end
 end
