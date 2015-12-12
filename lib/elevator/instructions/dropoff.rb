@@ -1,6 +1,6 @@
 module Elevator
   module Instructions
-    PickupRequest = Struct.new(:floor, :direction) do
+    Dropoff = Struct.new(:floor) do
       include ElevatorMovementInstruction
     end
   end
