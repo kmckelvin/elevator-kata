@@ -7,17 +7,17 @@ module Elevator
         it "returns the first instruction" do
           instruction = Instructions::PickupRequest.new(nil)
           state = ShaftState.new(nil, nil, [instruction])
-          resolver = InstructionResolver.new(state)
-          expect(resolver.next_instruction).to eq instruction
+          resolver = InstructionResolver.new
+          expect(resolver.next_instruction(state)).to eq instruction
         end
       end
 
       context "with no pending instructions" do
         it "returns a stop instruction" do
           state = ShaftState.new(nil, nil, [])
-          resolver = InstructionResolver.new(state)
+          resolver = InstructionResolver.new
 
-          expect(resolver.next_instruction).to eq Instructions::Stop.new
+          expect(resolver.next_instruction(state)).to eq Instructions::Stop.new
         end
       end
     end
