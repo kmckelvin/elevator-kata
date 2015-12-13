@@ -13,11 +13,11 @@ module Elevator
 
       private
       def target_floor(shaft_state)
-        throw NotImplementedError, "Implement #{__method__} in subclasses of move"
+        throw NotImplementedError, "Implement #{__method__} in subclasses of AbstractMove"
       end
 
       def target_direction
-        throw NotImplementedError, "Implement #{__method__} in subclasses of move"
+        throw NotImplementedError, "Implement #{__method__} in subclasses of AbstractMove"
       end
     end
   end
