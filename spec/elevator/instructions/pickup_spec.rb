@@ -110,6 +110,14 @@ module Elevator
           end
         end
       end
+
+      describe "#to_s" do
+        it "returns the string formatted as 'Pickup (going down) on level 8" do
+          floor = Floor.new("8")
+          pickup = Pickup.new(floor, :down)
+          expect(pickup.to_s).to eq "Pickup (going down) on level 8"
+        end
+      end
     end
   end
 end
