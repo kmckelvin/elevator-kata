@@ -13,6 +13,14 @@ module Elevator
       def is_fulfilled?(shaft_state)
         shaft_state.elevator.stopped?
       end
+
+      def absolute_distance(shaft_state)
+        0
+      end
+
+      def directional_distance(shaft_state)
+        0
+      end
     end
   end
 end

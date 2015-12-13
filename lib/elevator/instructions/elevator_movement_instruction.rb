@@ -16,6 +16,14 @@ module Elevator
       def is_fulfilled?(shaft_state)
         shaft_state.elevator.current_floor == floor && shaft_state.elevator.stopped?
       end
+
+      def absolute_distance(shaft_state)
+        shaft_state.floor_navigator.distance_between(floor, shaft_state.elevator.current_floor)
+      end
+
+      def directional_distance(shaft_state)
+        shaft_state.floor_navigator.directional_distance_between(floor, shaft_state.elevator.current_floor)
+      end
     end
   end
 end
