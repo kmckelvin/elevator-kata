@@ -55,8 +55,8 @@ draw_until_paused(state, run_loop)
 
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("B1", floors))
 shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("B1", floors), :up)
-shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("4", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("6", floors))
+shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("4", floors))
 
 draw_until_paused(state, run_loop)
 
@@ -64,5 +64,8 @@ shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("9",
 shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("8", floors), :down)
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("4", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("6", floors))
+shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("G", floors))
+shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("1", floors))
+shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("8", floors))
 
 draw_until_paused(state, run_loop)
