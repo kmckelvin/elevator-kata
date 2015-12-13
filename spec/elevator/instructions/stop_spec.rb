@@ -31,6 +31,27 @@ module Elevator
           end
         end
       end
+
+      describe "above_or_on_current_floor?" do
+        it "returns true" do
+          action = Instructions::Stop.new
+          expect(action.above_or_on_current_floor?(nil)).to be_truthy
+        end
+      end
+
+      describe "below_or_on_current_floor?" do
+        it "returns true" do
+          action = Instructions::Stop.new
+          expect(action.below_or_on_current_floor?(nil)).to be_truthy
+        end
+      end
+
+      describe "matches_direction?" do
+        it "returns true" do
+          action = Instructions::Stop.new
+          expect(action.matches_direction?(nil)).to be_truthy
+        end
+      end
     end
   end
 end
