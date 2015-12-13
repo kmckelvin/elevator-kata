@@ -12,7 +12,7 @@ def render_building(shaft_state, tick_count)
   system "clear" or system "cls"
   puts "Elevator motion: #{shaft_state.elevator.motion}, Tick: #{tick_count}"
   shaft_state.floors.reverse.each do |floor|
-    puts "#{floor.name} | #{"X" if shaft_state.elevator.current_floor == floor}"
+    puts "%3s | %s" % [floor.name, shaft_state.elevator.current_floor == floor ? "X" : ""]
   end
 end
 
