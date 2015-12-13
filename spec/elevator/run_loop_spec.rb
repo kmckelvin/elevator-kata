@@ -56,11 +56,11 @@ module Elevator
           final_shaft_state = run_loop.tick(moving_shaft_state)
 
           expected_final_elevator = Elevator.new(current_floor: first_floor)
-          expect(final_shaft_state).to eq ShaftState.new(floors, expected_final_elevator, [])
+          expect(final_shaft_state).to eq ShaftState.new(floors, expected_final_elevator, [], :up)
         end
       end
 
-      context "with a request ot go to the ground floor" do
+      context "with a request to go to the ground floor" do
         it "goes to the ground floor after ticking" do
           ground_floor = Floor.new("G")
           first_floor = Floor.new("1")
@@ -78,7 +78,7 @@ module Elevator
           final_shaft_state = run_loop.tick(moving_shaft_state)
 
           expected_final_elevator = Elevator.new(current_floor: ground_floor)
-          expect(final_shaft_state).to eq ShaftState.new(floors, expected_final_elevator, [])
+          expect(final_shaft_state).to eq ShaftState.new(floors, expected_final_elevator, [], :down)
         end
       end
 
@@ -105,7 +105,7 @@ module Elevator
           final_shaft_state = run_loop.tick(moving_shaft_state)
 
           expected_final_elevator = Elevator.new(current_floor: ground_floor)
-          expect(final_shaft_state).to eq ShaftState.new(floors, expected_final_elevator, [])
+          expect(final_shaft_state).to eq ShaftState.new(floors, expected_final_elevator, [], :down)
         end
       end
     end

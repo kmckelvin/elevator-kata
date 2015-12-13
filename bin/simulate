@@ -10,7 +10,7 @@ end
 
 def render_building(shaft_state, tick_count)
   system "clear" or system "cls"
-  puts "Elevator motion: #{shaft_state.elevator.motion}, Tick: #{tick_count}"
+  puts "Elevator motion: #{shaft_state.elevator.motion}, Shaft direction: #{shaft_state.direction}, Tick: #{tick_count}"
   shaft_state.floors.reverse.each do |floor|
     puts "%3s | %s" % [floor.name, shaft_state.elevator.current_floor == floor ? "X" : ""]
   end
@@ -62,6 +62,9 @@ draw_until_paused(state, run_loop)
 
 shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("9", floors), :down)
 shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("8", floors), :down)
+
+draw_until_paused(state, run_loop)
+
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("4", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("6", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("G", floors))

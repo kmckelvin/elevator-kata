@@ -7,6 +7,7 @@ module Elevator
         if next_floor
           shaft_state.elevator.current_floor = next_floor
           shaft_state.elevator.motion = target_direction
+          shaft_state.direction = target_direction
         end
       end
 
