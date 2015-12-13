@@ -96,6 +96,20 @@ module Elevator
           end
         end
       end
+
+      describe "#matches_direction?" do
+        context "when the directions are equal" do
+          it "returns true" do
+            expect(Pickup.new(nil, :down).matches_direction?(:down)).to be_truthy
+          end
+        end
+
+        context "when the directions are not equal" do
+          it "returns false" do
+            expect(Pickup.new(nil, :down).matches_direction?(:up)).to be_falsy
+          end
+        end
+      end
     end
   end
 end

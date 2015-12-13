@@ -25,6 +25,10 @@ module Elevator
       def below_or_on_current_floor?(shaft_state)
         true
       end
+
+      def matches_direction?(shaft_direction)
+        true
+      end
     end
   end
 end
