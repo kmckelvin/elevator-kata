@@ -8,11 +8,31 @@ def lookup_floor(name, floors)
   floors.find { |f| f.name == name }
 end
 
-def render_building(shaft_state, tick_count)
+def render_building(shaft_state, tick_count, last_instruction)
   system "clear" or system "cls"
-  puts "Elevator motion: #{shaft_state.elevator.motion}, Shaft direction: #{shaft_state.direction}, Tick: #{tick_count}"
+  puts "Elevator motion: #{shaft_state.elevator.motion}"
+  puts "Shaft direction: #{shaft_state.direction}"
+  puts "Tick: #{tick_count}"
+  puts "Last instruction: #{last_instruction}"
+  puts ""
   shaft_state.floors.reverse.each do |floor|
     puts "%3s | %s" % [floor.name, shaft_state.elevator.current_floor == floor ? "X" : ""]
+  end
+
+  puts "Remaining instructions"
+  shaft_state.instructions.each do |instruction|
+    puts instruction
+  end
+end
+
+def draw_until_paused(state, run_loop)
+  loop do
+    state.tick_count += 1
+    instruction = run_loop.next_instruction(state.shaft_state)
+    state.shaft_state = run_loop.tick(state.shaft_state)
+    render_building(state.shaft_state, state.tick_count, instruction)
+    sleep 1
+    break if state.shaft_state.instructions.empty?
   end
 end
 
@@ -32,7 +52,7 @@ shaft_state = Elevator::ShaftState.new(floors, elevator, [])
 shaft_state.instructions << Elevator::Instructions::Pickup.new(lookup_floor("5", floors), :down)
 tick_count = 0
 
-render_building(shaft_state, tick_count)
+render_building(shaft_state, tick_count, nil)
 
 state = OpenStruct.new(
   tick_count: 0,
@@ -40,16 +60,6 @@ state = OpenStruct.new(
 )
 
 run_loop = Elevator::RunLoop.new
-
-def draw_until_paused(state, run_loop)
-  loop do
-    state.tick_count += 1
-    state.shaft_state = run_loop.tick(state.shaft_state)
-    render_building(state.shaft_state, state.tick_count)
-    sleep 0.3
-    break if state.shaft_state.instructions.empty?
-  end
-end
 
 draw_until_paused(state, run_loop)
 
@@ -69,6 +79,6 @@ shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("4"
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("6", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("G", floors))
 shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("1", floors))
-shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("8", floors))
+shaft_state.instructions << Elevator::Instructions::Dropoff.new(lookup_floor("7", floors))
 
 draw_until_paused(state, run_loop)
