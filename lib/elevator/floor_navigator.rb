@@ -23,10 +23,6 @@ module Elevator
       second_index - first_index
     end
 
-    def distance_between(first, second)
-      directional_distance_between(first, second).abs
-    end
-
     private
     attr_reader :floors
   end

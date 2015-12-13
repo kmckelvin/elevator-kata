@@ -10,9 +10,9 @@ module Elevator
 
         navigator = FloorNavigator.new([ground_floor, first_floor, second_floor])
 
-        expect(navigator.distance_between(ground_floor, second_floor)).to eq 2
-        expect(navigator.distance_between(first_floor, ground_floor)).to eq 1
-        expect(navigator.distance_between(second_floor, second_floor)).to eq 0
+        expect(navigator.directional_distance_between(ground_floor, second_floor)).to eq(2)
+        expect(navigator.directional_distance_between(first_floor, ground_floor)).to eq(-1)
+        expect(navigator.directional_distance_between(second_floor, second_floor)).to eq(0)
       end
     end
   end

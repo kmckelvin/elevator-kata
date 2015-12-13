@@ -18,8 +18,12 @@ module Elevator
         0
       end
 
-      def directional_distance(shaft_state)
-        0
+      def above_or_on_current_floor?(shaft_state)
+        true
+      end
+
+      def below_or_on_current_floor?(shaft_state)
+        true
       end
     end
   end

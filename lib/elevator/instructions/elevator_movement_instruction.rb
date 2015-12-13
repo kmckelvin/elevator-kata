@@ -18,9 +18,18 @@ module Elevator
       end
 
       def absolute_distance(shaft_state)
-        shaft_state.floor_navigator.distance_between(floor, shaft_state.elevator.current_floor)
+        directional_distance(shaft_state).abs
       end
 
+      def above_or_on_current_floor?(shaft_state)
+        directional_distance(shaft_state) <= 0
+      end
+
+      def below_or_on_current_floor?(shaft_state)
+        directional_distance(shaft_state) >= 0
+      end
+
+      private
       def directional_distance(shaft_state)
         shaft_state.floor_navigator.directional_distance_between(floor, shaft_state.elevator.current_floor)
       end
