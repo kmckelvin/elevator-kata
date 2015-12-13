@@ -7,7 +7,7 @@ module Elevator
         }.min_by { |i|
           i.absolute_distance(shaft_state)
         }
-      elsif shaft_state.going_down? && next_instruction.nil?
+      elsif shaft_state.going_down?
         next_instruction = shaft_state.instructions.select { |i|
           i.below_or_on_current_floor?(shaft_state)
         }.min_by { |i|
@@ -19,7 +19,7 @@ module Elevator
         }
       end
 
-      next_instruction || Instructions::Stop.new
+      next_instruction || shaft_state.instructions[0] || Instructions::Stop.new
     end
   end
 end
